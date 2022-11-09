@@ -7,8 +7,6 @@
 
 import UIKit
 
-//TODO: Plus add in logic to update image request on orientation change
-
 class ViewController: UIViewController {
     
     
@@ -70,19 +68,23 @@ extension ViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProgCell", for: indexPath) as? ProgTableViewCell else {
             fatalError("Something is wrong")
         }
-        let progTableViewCell = ProgTableViewCell()
+        //let progTableViewCell = ProgTableViewCell()
         //let frame = progTableViewCell.stockImageView.frame
         //cell.stockImageView.image = progTableViewCell.stockImageView.image
+
         let frame = cell.stockImageView.frame
-        self.network.fetchImageData(path: "https://picsum.photos/50/50") {[weak self] data in
+        self.network.fetchImageData(path: "https://picsum.photos/\(Int(frame.width))/\(Int(frame.height))") {[weak self] data in
             guard let data = data else {return}
             print(data)
             DispatchQueue.main.async {
                 cell.stockImageView.image = UIImage(data: data )
+                guard let intID = self?.network.tempID as? String else {return}
                 
+                    cell.stockImageID.text = "ID: \(intID)"
             }
 
         }
+        
         
         return cell
         

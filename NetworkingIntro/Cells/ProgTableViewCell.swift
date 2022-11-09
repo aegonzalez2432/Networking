@@ -12,10 +12,20 @@ class ProgTableViewCell: UITableViewCell {
     lazy var stockImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
+        
         imageView.backgroundColor = .systemGreen
-        imageView.layer.cornerRadius = 20.0
+        //imageView.layer.cornerRadius = 20.0
         return imageView
+    }()
+    
+    lazy var stockImageID: UILabel = {
+        let imageID = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 21))
+        imageID.translatesAutoresizingMaskIntoConstraints = false
+        imageID.contentMode = .scaleAspectFit
+        imageID.backgroundColor = .systemMint
+        imageID.text = "ID: Image ID"
+        imageID.textAlignment = .center
+        return imageID
     }()
     
 
@@ -33,16 +43,25 @@ class ProgTableViewCell: UITableViewCell {
     
     func setupUI() {
         
-//        self.contentView.addSubview(stockButton)
         self.contentView.addSubview(stockImageView)
+        self.contentView.addSubview(stockImageID)
+//        let table = UITableView(frame: .zero)
+//        table.translatesAutoresizingMaskIntoConstraints = false
+//        table.addSubview(stockImageID)
+//        table.addSubview(stockImageView)
         
         self.stockImageView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
-        self.stockImageView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
+        self.stockImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
+        self.stockImageView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true
+        self.stockImageView.widthAnchor.constraint(equalToConstant: 150).isActive = true
+        self.stockImageView.heightAnchor.constraint(equalToConstant: 150).isActive = true
         
-//        self.stockButton.topAnchor.constraint(equalTo: self.stockImageView.bottomAnchor, constant: 8).isActive = true
-//        self.stockButton.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8).isActive = true
-//        self.stockButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
-//        self.stockButton.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true
+        
+        self.stockImageID.leadingAnchor.constraint(equalTo: self.stockImageView.trailingAnchor, constant: 8).isActive = true
+        self.stockImageID.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8).isActive = true
+        self.stockImageID.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
+        self.stockImageID.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -8).isActive = true
+        
         
     }
 }
